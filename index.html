@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Form</title>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script>
+function SubForm (){
+        var check=document.getElementsByClassName('data');
+        for(var i=0;i<check.length;i++)
+        {
+          if(check[i].value=="")
+          {
+            alert("Fill the Fields");
+            return false;
+          }
+        }
+    $.ajax({
+        url:'https://api.apispreadsheets.com/data/YltBoiiPtSEgfgCG/',
+        type:'post',
+        data:$("#myForm").serializeArray(),
+        success: function(){
+          alert("Form Data Submitted :)")
+        },
+        error: function(){
+          alert("There was an error :(")
+        }
+    });
+}
+</script>
+</head>
+<body>
+  <form id="myForm">
+    <label>Full Name</label>
+    <br/>
+    <input class="data" type="text" placeholder="Enter Name" name="Name" required/>
+    <br/>
+    <label>Email</label>
+    <br/>
+    <input class="data" type="email" placeholder="Enter Email" name="Email" required />
+    <br/>
+    <label>Age</label>
+    <br/>
+    <input class="data" type="number" placeholder="Enter Age" name="Age" required />
+    <br/>
+    <label>Message</label>
+    <br/>
+    <textarea class="data" type="text" name="Message"></textarea>
+    <br/>
+    <br/>
+  </form>
+  <button onclick="SubForm()">Submit</button>
+</body>
+</html>
